@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pupposoft.fiap.sgp.usuario.config.security.UsuarioSecurity;
-import br.com.pupposoft.fiap.sgp.usuario.controller.json.LoginResponseJson;
+import br.com.pupposoft.fiap.sgp.usuario.controller.json.UsuarioJson;
 import br.com.pupposoft.fiap.sgp.usuario.domain.Usuario;
 import br.com.pupposoft.fiap.sgp.usuario.usecase.CriarUsuarioUseCase;
 import br.com.pupposoft.fiap.sgp.usuario.usecase.ObterTokenUseCase;
@@ -29,7 +29,7 @@ public class LoginController {
 	private CriarUsuarioUseCase criarUsuarioUseCase;
 
 	@PostMapping("login")
-	public String login(@RequestBody LoginResponseJson responseJson) {
+	public String login(@RequestBody UsuarioJson responseJson) {
 		log.trace("Start responseJson={}", responseJson);
 		
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(responseJson.getUsername(), responseJson.getPassword());
@@ -46,7 +46,7 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public Long salvar(@RequestBody LoginResponseJson usuarioJson) {
+	public Long salvar(@RequestBody UsuarioJson usuarioJson) {
 		log.trace("Start usuarioJson={}", usuarioJson);
 		
 		Usuario usuario = usuarioJson.getDomain();

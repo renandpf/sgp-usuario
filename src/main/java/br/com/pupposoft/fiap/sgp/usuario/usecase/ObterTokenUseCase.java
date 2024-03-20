@@ -4,8 +4,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.pupposoft.fiap.sgp.usuario.domain.Usuario;
 import br.com.pupposoft.fiap.sgp.usuario.gateway.TokenGateway;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ObterTokenUseCase {
 	
 	private TokenGateway tokenGateway;

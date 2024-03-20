@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-public class LoginResponseJson {
+public class UsuarioJson {
 	private Long id;
 	private String username; 
 	private String password;
@@ -21,6 +21,7 @@ public class LoginResponseJson {
 				.id(id)
 				.email(username)
 				.password(password)
+				.roles(roles)
 				.build();
 	}
 }
