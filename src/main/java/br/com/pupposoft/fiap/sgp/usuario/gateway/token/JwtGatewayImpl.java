@@ -39,8 +39,8 @@ public class JwtGatewayImpl implements TokenGateway {
 			SecretKeySpec signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
 			Map<String, Object> infos = new HashMap<>();
-			infos.put("userId", usuario.getId());
-			infos.put("userRoles", usuario.getRoles());
+			infos.put("user-id", usuario.getId());
+			infos.put("user-roles", usuario.getRoles());
 			
 			JwtBuilder builder = Jwts.builder()
 					.setId(UUID.randomUUID().toString())
