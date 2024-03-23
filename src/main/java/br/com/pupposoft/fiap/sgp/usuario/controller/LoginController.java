@@ -62,7 +62,7 @@ public class LoginController {
 		return idUsuario;
 	}
 	
-	@GetMapping
+	@GetMapping("{userId}")
 	public UsuarioJson obterPorUserId(@PathVariable("userId") Long userId) {
 		log.trace("Start userId={}", userId);
 		

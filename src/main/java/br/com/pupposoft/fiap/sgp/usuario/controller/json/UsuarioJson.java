@@ -2,6 +2,8 @@ package br.com.pupposoft.fiap.sgp.usuario.controller.json;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.pupposoft.fiap.sgp.usuario.domain.Usuario;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class UsuarioJson {
 		roles = usuario.getRoles();
 	}
 	
+	@JsonIgnore
 	public Usuario getDomain() {
 		return Usuario.builder()
 				.id(id)

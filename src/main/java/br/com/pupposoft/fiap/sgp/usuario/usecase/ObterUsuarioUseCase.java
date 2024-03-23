@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import br.com.pupposoft.fiap.sgp.usuario.domain.Usuario;
 import br.com.pupposoft.fiap.sgp.usuario.exception.UsuarioNaoEncontradoExcepion;
 import br.com.pupposoft.fiap.sgp.usuario.gateway.UsuarioRepositoryGateway;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class ObterUsuarioUseCase {
 
 	private UsuarioRepositoryGateway usuarioRepositoryGateway;
@@ -23,7 +25,7 @@ public class ObterUsuarioUseCase {
 			throw new UsuarioNaoEncontradoExcepion();
 		}
 		
-		return null;
+		return usuarioOp.get();
 	}
 
 }
