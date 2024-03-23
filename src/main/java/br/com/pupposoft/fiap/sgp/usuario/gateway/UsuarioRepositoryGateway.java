@@ -9,6 +9,8 @@ public interface UsuarioRepositoryGateway {
 	Optional<Usuario> findByUsername(String username);
 
 	Long salvar(Usuario usuario);
+
+	Optional<Usuario> findById(Long userId);
 	
 
 }

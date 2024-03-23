@@ -16,6 +16,12 @@ public class UsuarioJson {
 	private String password;
 	private List<String> roles;
 	
+	public UsuarioJson(Usuario usuario) {
+		id = usuario.getId();
+		username = usuario.getEmail();
+		roles = usuario.getRoles();
+	}
+	
 	public Usuario getDomain() {
 		return Usuario.builder()
 				.id(id)
