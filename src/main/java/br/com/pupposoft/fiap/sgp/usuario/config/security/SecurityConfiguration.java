@@ -23,6 +23,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/usuarios/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                         .requestMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/actuator/*/*").permitAll()
                         //.requestMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 //.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
