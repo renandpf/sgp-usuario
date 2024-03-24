@@ -18,6 +18,7 @@ public class UsuarioSecurity implements UserDetails {
 	private List<String> roles;
 	
 	public UsuarioSecurity(Usuario usuario) {
+		id = usuario.getId();
 		username = usuario.getEmail();
 		password = usuario.getPassword();
 		roles = usuario.getRoles();
