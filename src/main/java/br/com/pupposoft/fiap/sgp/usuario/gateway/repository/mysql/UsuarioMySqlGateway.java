@@ -55,4 +55,21 @@ public class UsuarioMySqlGateway implements UsuarioRepositoryGateway {
 			throw new ErroAoAcessarRepositorioDadosException();
 		}
 	}
+
+	@Override
+	public Optional<Usuario> findById(Long userId) {
+		try {
+			Optional<UsuarioEntity> usuarioEntityOp = usuarioRepository.findById(userId);
+			if(usuarioEntityOp.isPresent()) {
+				UsuarioEntity usuarioEntity = usuarioEntityOp.get();
+				return Optional.of(usuarioEntity.mapperToDomain());
+			}
+			
+			return Optional.empty(); 
+			
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new ErroAoAcessarRepositorioDadosException();
+		}		
+	}
 }

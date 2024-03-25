@@ -3,16 +3,19 @@ package br.com.pupposoft.fiap.sgp.usuario.controller;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pupposoft.fiap.sgp.usuario.config.security.UsuarioSecurity;
-import br.com.pupposoft.fiap.sgp.usuario.controller.json.LoginResponseJson;
+import br.com.pupposoft.fiap.sgp.usuario.controller.json.UsuarioJson;
 import br.com.pupposoft.fiap.sgp.usuario.domain.Usuario;
 import br.com.pupposoft.fiap.sgp.usuario.usecase.CriarUsuarioUseCase;
 import br.com.pupposoft.fiap.sgp.usuario.usecase.ObterTokenUseCase;
+import br.com.pupposoft.fiap.sgp.usuario.usecase.ObterUsuarioUseCase;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,8 +31,10 @@ public class LoginController {
 	
 	private CriarUsuarioUseCase criarUsuarioUseCase;
 
+	private ObterUsuarioUseCase obterUsuarioUseCase;
+	
 	@PostMapping("login")
-	public String login(@RequestBody LoginResponseJson responseJson) {
+	public String login(@RequestBody UsuarioJson responseJson) {
 		log.trace("Start responseJson={}", responseJson);
 		
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(responseJson.getUsername(), responseJson.getPassword());
@@ -46,7 +51,7 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public Long salvar(@RequestBody LoginResponseJson usuarioJson) {
+	public Long salvar(@RequestBody UsuarioJson usuarioJson) {
 		log.trace("Start usuarioJson={}", usuarioJson);
 		
 		Usuario usuario = usuarioJson.getDomain();
@@ -55,6 +60,18 @@ public class LoginController {
 		
 		log.trace("End idUsuario={}", idUsuario);
 		return idUsuario;
+	}
+	
+	@GetMapping("{userId}")
+	public UsuarioJson obterPorUserId(@PathVariable("userId") Long userId) {
+		log.trace("Start userId={}", userId);
+		
+		Usuario usuario = obterUsuarioUseCase.obterPorUsuarioId(userId);
+		
+		UsuarioJson usuarioJson = new UsuarioJson(usuario);
+		
+		log.trace("End usuarioJson={}", usuarioJson);
+		return usuarioJson;
 	}
 	
 }
